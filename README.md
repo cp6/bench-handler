@@ -7,8 +7,18 @@
 MYSQL ability not available yet!
 </h2>
 
-<p>Usage:</p><pre><code>benchsh('server_name', 'thelogfile.log', 2)//1 for MYSQL INSERT, 2 for JSON output.
-</code></pre>
+<p>Usage:</p>
+
+```php
+benchsh('server_name', 'thelogfile.log', 2);//1 for MYSQL INSERT, 2 for JSON output.
+```
+<p>
+or
+</p>
+
+```php
+nench('server_name', 'thelogfile.log', 2);//1 for MYSQL INSERT, 2 for JSON output.
+```
 
 <h1>To be added:</h1>
 <ul>
