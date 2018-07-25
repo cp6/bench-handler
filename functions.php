@@ -73,12 +73,16 @@ function benchsh($entry, $logfile, $task = 1)
         $speed11 = array_pop(explode(' ', $array[28]));
         $ip11 = preg_match('/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $array[28], $ip_match11);
         $ip_match11 = implode(" ", $ip_match11);
+        $date = date('Y-m-d H:i:s');
     } else {
         return "Make sure this is a bench.sh output and the first line is the CPU model output";
     }
     if ($task == 1) {
         $connect = mysqli_connect("localhost", "USERNAME", "PASSWORD", "DATABASE");//MYSQL details
-        $sql = "INSERT INTO `benchmarks_benchsh` (`vps`, `col`) VALUES ('$entry', '$var')";//MYSQL query
+        $sql = "INSERT INTO `benchsh` (`server`, `cpu_model`, `cpu_cores`, `cpu_freq`, `disk`, `disk_used`, `mem`, `mem_used`, `mem_swap`, `mem_swap_used`, `uptime`, `load_avg`, `os`, `arch`, `kernel`, `io1`, `io2`, `io3`, `io_avg`, `cachefly`, `l_tokyo`, `l_singapore`, `l_london`, `l_frankfurt`, `l_fremont`,
+`s_dallas`, `s_seattle`, `s_frankfurt`, `s_singapore`, `s_hongkong`, `datetime`) VALUES ('$entry', '$cpu', '$cpu_cores', '$cpu_freq', '" . value(explode("(", $disk, 2))[0] . "', ' " . value($disk_used)[1] . "', '" . value(explode("(", $mem, 2))[0] . "', '" . value($mem_used)[1] . "', '" . value(explode("(", $mem_swap, 2))[0] . "',
+ '" . value($mem_swap_used)[1] . "', '$uptime', '$load_avg', '$os', '$arch', '$kernel', '" . value($io1) . "', '" . value($io2) . "', '" . value($io3) . "', '" . value($io_avg) . "', '" . value($speed1) . "',
+ '" . value($speed2) . "', '" . value($speed3) . "', '" . value($speed4) . "', '" . value($speed5) . "', '" . value($speed6) . "', '" . value($speed7) . "', '" . value($speed8) . "', '" . value($speed9) . "', '" . value($speed10) . "', '" . value($speed11) . "', '$date')";//MYSQL query
         $result = mysqli_query($connect, $sql);
         return "RAN: " . $sql . "";
     } elseif ($task == 2) {
@@ -148,12 +152,15 @@ function nench($entry, $logfile, $task = 1)
         $speed3 = value($array[30]);
         $speed4 = value(strstr($array[31], ':'));
         $speed5 = value($array[32]);
+        $date = date('Y-m-d H:i:s');
     } else {
         return "Not a nench.sh bench output file.";
     }
     if ($task == 1) {
         $connect = mysqli_connect("localhost", "USERNAME", "PASSWORD", "DATABASE");//MYSQL details
-        $sql = "INSERT INTO `benchmarks_nench` (`vps`, `col`) VALUES ('$entry', '$var')";//MYSQL query
+        $sql = "INSERT INTO `nench` (`server`, `cpu_model`, `cpu_cores`, `cpu_freq`, `disk`, `mem`, `mem_swap`, `kernel`, `hash`, `compress`, `encrypt`, `iop_seek_min`, `iop_seek_avg`,
+ `iop_seek_max`, `iop_seek_mdev`, `iop_read_req`, `iop_read_speed`, `iop_read_iops`, `iop_read_write`, `io1`, `io2`, `io3`, `io_avg`, `cachefly`, `l_nl`, `s_dallas`, `o_france`, `ovh_bhs`, `datetime`) VALUES ('$entry', '$cpu', '$cpu_cores', '$cpu_freq', '$storage', '$mem', '$mem_swap', '$kernel', '$hash', '$comp', '$enc', '$iop_min', '$iop_avg', '$iop_max',
+  '$iop_mdev', '$read_speed_requests', '$read_speed_read', '$read_speed_iops', '$read_speed_write', '$io1', '$io2', '$io3', '$io_avg', '$speed1', '$speed2', '$speed3', '$speed4', '$speed5', '$date')";//MYSQL query
         $result = mysqli_query($connect, $sql);
         return "RAN: " . $sql . "";
     } elseif ($task == 2) {
