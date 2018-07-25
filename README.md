@@ -1,36 +1,48 @@
 <h1>Bench handler</h1>
 <p>A PHP function that handles a server benchmark output into either an array or inserts into a MYSQL database. Currently supported benchmarks are <a href="https://bench.sh/">bench.sh</a> and <a href="https://github.com/n-st/nench">nench</a>. Support markdown syntax and hot keys.</p>
 
-[![GitHub version](https://badge.fury.io/gh/boennemann%2Fbadges.svg)](http://badge.fury.io/gh/boennemann%2Fbadges)
+[![Generic badge](https://img.shields.io/badge/version-0.2-blue.svg)](https://shields.io/)
 
-<h2>
-MYSQL ability not available yet!
-</h2>
 
 <p>Usage:</p>
 
 ```php
-benchsh('server_name', 'thelogfile.log', 2);//1 for MYSQL INSERT, 2 for JSON output.
+require('functions.php');
+```
+<p>
+then
+</p>
+
+```php
+echo benchsh('server_name', 'thebench.log', 1);//for MYSQL INSERT
+echo json_encode(benchsh('server_name', 'thebench.log', 2));//for JSON output
 ```
 <p>
 or
 </p>
 
 ```php
-nench('server_name', 'thelogfile.log', 2);//1 for MYSQL INSERT, 2 for JSON output.
+echo nench('server_name', 'thenench.log', 1);//for MYSQL INSERT
+echo json_encode(nench('server_name', 'thenench.log', 2));//for JSON output
 ```
 
 <h1>To be added:</h1>
 <ul>
-  <li>MYSQL Insert aspect</li>
-  <li>MYSQL table files</li>
-  <li>IPv6 Speedtests</li>
+
+  ~~<li>MYSQL Insert aspect</li>~~
+  
+  ~~<li>MYSQL table files</li>~~
+  
+  <li>IPv6 Speedtests (bench.sh)</li>
   <li>Byte and Bit handling</li>
   <li>String and Int variables</li>
+  <li>Add url $_GET ability</li>
 </ul>
 
 <p>
-For correct log file formating have your out put files like the examples below, noting what is on the first line:
+
+__For correct log file formating have your output files like the examples below, noting what is on the first line:__
+
 </p>
 
 
