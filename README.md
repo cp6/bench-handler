@@ -28,11 +28,6 @@ echo json_encode(nench('server_name', 'thenench.log', 2));//for JSON output
 
 <h1>To be added:</h1>
 <ul>
-
-  ~~<li>MYSQL Insert aspect</li>~~
-  
-  ~~<li>MYSQL table files</li>~~
-  
   <li>IPv6 Speedtests (bench.sh)</li>
   <li>Byte and Bit handling</li>
   <li>String and Int variables</li>
